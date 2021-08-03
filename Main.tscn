@@ -4,26 +4,28 @@
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites/Tree.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 16.8518
 height = 18.7149
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 0.882187, 4.2979 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 3 )]
-
-[node name="TreeArea" type="Area2D" parent="."]
+[node name="TreeArea" type="Area2D" parent="YSort"]
 position = Vector2( -49, 4.5 )
 
-[node name="Tree" type="Sprite" parent="TreeArea"]
+[node name="Tree" type="Sprite" parent="YSort/TreeArea"]
 position = Vector2( 0.5, -7 )
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TreeArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/TreeArea"]
 position = Vector2( -0.16629, -5.33371 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="YSort"]
+
+[node name="UI" parent="YSort/CanvasLayer" instance=ExtResource( 3 )]
